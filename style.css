@@ -13,7 +13,7 @@ body {
 }
 
 header {
-  background-color: #34656D;
+  background-color: #659287;
   color: #FAF8F1;
   text-align: center;
   padding: 1.5rem 0;
@@ -79,7 +79,7 @@ input[type="number"]:focus {
 
 /* Tombol utama */
 button {
-  background-color: #34656D;
+  background-color: #659287;
   color: #FAF8F1;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -98,6 +98,66 @@ button:hover {
   margin-right: 0.5rem;
   margin-top: 0.5rem;
 }
+
+/* Tombol submit utama */
+#bookFormSubmit {
+  background-color: #659287;
+  color: #FAF8F1;
+}
+
+#bookFormSubmit:hover {
+  background-color: #334443;
+}
+
+/* Tombol: Selesai dibaca */
+button[data-testid="bookItemIsCompleteButton"] {
+  background-color: #B1C29E;
+  color: #334443;
+}
+
+button[data-testid="bookItemIsCompleteButton"]:hover {
+  background-color: #659287;
+  color: #FAF8F1;
+}
+
+/* Tombol: Belum selesai dibaca (kembalikan ke rak awal) */
+button[data-testid="bookItemUndoButton"] {
+  background-color: #659287;
+  color: #FAF8F1;
+}
+
+button[data-testid="bookItemUndoButton"]:hover {
+  background-color: #34656D;
+}
+
+/* Tombol: Hapus Buku */
+button[data-testid="bookItemDeleteButton"] {
+  background-color: #FFE6A9;
+  color: #334443;
+}
+
+button[data-testid="bookItemDeleteButton"]:hover {
+  background-color: #DEAA79;
+  color: #FAF8F1;
+}
+
+/* Tombol: Edit Buku */
+button[data-testid="bookItemEditButton"] {
+  background-color: #DEAA79;
+  color: #334443;
+}
+
+button[data-testid="bookItemEditButton"]:hover {
+  background-color: #B1C29E;
+  color: #334443;
+}
+
+/* Jarak antar tombol buku */
+[data-testid="bookItem"] button {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 
 /* Kartu buku */
 [data-testid="bookItem"] {

@@ -82,8 +82,8 @@ function renderBooks() {
         <button data-testid="bookItemIsCompleteButton">
           ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
         </button>
-        <button data-testid="bookItemDeleteButton">Hapus</button>
-        <button data-testid="bookItemEditButton">Edit</button>
+        <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+        <button data-testid="bookItemEditButton">Edit Buku</button>
       </div>
     `;
 
@@ -197,8 +197,8 @@ function renderFilteredBooks(filteredBooks) {
         <button data-testid="bookItemIsCompleteButton">
           ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
         </button>
-        <button data-testid="bookItemDeleteButton">Hapus</button>
-        <button data-testid="bookItemEditButton">Edit</button>
+        <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+        <button data-testid="bookItemEditButton">Edit Buku</button>
       </div>
     `;
 
