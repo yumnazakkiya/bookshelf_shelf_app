@@ -1,8 +1,3 @@
-/* === Warna utama ===
-   #FAF8F1 - background utama
-   #34656D - elemen utama (header, tombol)
-   #334443 - teks / judul
-*/
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -39,6 +34,10 @@ section {
   padding: 1.5rem;
   margin-bottom: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#searchBookTitle {
+  margin-bottom: 1.5rem;
 }
 
 h2 {
