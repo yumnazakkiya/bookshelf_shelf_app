@@ -153,5 +153,76 @@ function editBook(id) {
 // ============================
 bookForm.addEventListener("submit", addBook);
 
+// ============================
+// Fungsi: Pencarian Buku
+// ============================
+function searchBooks(event) {
+  event.preventDefault();
+  const query = document
+    .getElementById("searchBookTitle")
+    .value.toLowerCase()
+    .trim();
+
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(query)
+  );
+
+  // Render hasil pencarian
+  renderFilteredBooks(filteredBooks);
+}
+
+function renderFilteredBooks(filteredBooks) {
+  incompleteShelf.innerHTML = "";
+  completeShelf.innerHTML = "";
+
+  if (filteredBooks.length === 0) {
+    incompleteShelf.innerHTML = "<p>Tidak ada buku ditemukan.</p>";
+    completeShelf.innerHTML = "<p>Tidak ada buku ditemukan.</p>";
+    return;
+  }
+
+  filteredBooks.forEach((book) => {
+    const bookElement = document.createElement("div");
+    bookElement.classList.add("book-item");
+    bookElement.setAttribute("data-bookid", book.id);
+
+    bookElement.innerHTML = `
+      <h3 data-testid="bookItemTitle">${book.title}</h3>
+      <p data-testid="bookItemAuthor">Penulis: ${book.author}</p>
+      <p data-testid="bookItemYear">Tahun: ${book.year}</p>
+      <div>
+        <button data-testid="bookItemIsCompleteButton">
+          ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
+        </button>
+        <button data-testid="bookItemDeleteButton">Hapus</button>
+        <button data-testid="bookItemEditButton">Edit</button>
+      </div>
+    `;
+
+    // Event listener tombol (supaya tetap berfungsi)
+    bookElement
+      .querySelector('[data-testid="bookItemIsCompleteButton"]')
+      .addEventListener("click", () => toggleBookStatus(book.id));
+
+    bookElement
+      .querySelector('[data-testid="bookItemDeleteButton"]')
+      .addEventListener("click", () => deleteBook(book.id));
+
+    bookElement
+      .querySelector('[data-testid="bookItemEditButton"]')
+      .addEventListener("click", () => editBook(book.id));
+
+    if (book.isComplete) {
+      completeShelf.appendChild(bookElement);
+    } else {
+      incompleteShelf.appendChild(bookElement);
+    }
+  });
+}
+
+// Tambahkan event listener untuk form pencarian
+const searchForm = document.getElementById("searchBook");
+searchForm.addEventListener("submit", searchBooks);
+
 // Jalankan fungsi loadBooks() saat halaman dibuka
 document.addEventListener("DOMContentLoaded", loadBooks);

@@ -118,6 +118,26 @@ button:hover {
   margin: 0.2rem 0;
 }
 
+.book-item {
+  display: block;
+  background-color: #FAF8F1;
+  border-left: 4px solid #34656D;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+.book-item h3 {
+  margin: 0 0 0.3rem 0;
+  color: #334443;
+}
+.book-item p {
+  margin: 0.2rem 0;
+}
+.book-item div {
+  margin-top: 0.6rem;
+}
+
+
 /* Responsif */
 @media (max-width: 600px) {
   main {
