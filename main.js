@@ -2,8 +2,9 @@
 // Ambil elemen dari HTML (pastikan ID cocok dengan HTML kamu!)
 // ============================
 const bookForm = document.getElementById("bookForm"); // <form id="bookForm">
-const incompleteShelf = document.getElementById("incompleteBookshelfList");
-const completeShelf = document.getElementById("completeBookshelfList");
+const incompleteShelf = document.getElementById("incompleteBookList");
+
+const completeShelf = document.getElementById("completeBookList");
 
 // ============================
 // Data awal buku disimpan di array
@@ -18,10 +19,8 @@ function addBook(event) {
 
   const title = document.getElementById("bookFormTitle").value;
   const author = document.getElementById("bookFormAuthor").value;
-  // const year = document.getElementById("bookFormYear").value;
   const year = Number(document.getElementById("bookFormYear").value);
 
- 
   const isComplete = document.getElementById("bookFormIsComplete").checked;
 
   const newBook = {
@@ -72,32 +71,30 @@ function renderBooks() {
   books.forEach((book) => {
     const bookElement = document.createElement("div");
     bookElement.classList.add("book-item");
-    bookElement.setAttribute("data-bookid", book.id);
+    bookElement.setAttribute("data-bookid", book.id); // PERBAIKAN: Tambahkan data-testid="bookItem"
+    bookElement.setAttribute("data-testid", "bookItem");
 
     bookElement.innerHTML = `
-      <h3 data-testid="bookItemTitle">${book.title}</h3>
-      <p data-testid="bookItemAuthor">Penulis: ${book.author}</p>
-      <p data-testid="bookItemYear">Tahun: ${book.year}</p>
-      <div>
-        <button data-testid="bookItemIsCompleteButton">
-          ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
-        </button>
-        <button data-testid="bookItemDeleteButton">Hapus Buku</button>
-        <button data-testid="bookItemEditButton">Edit Buku</button>
-      </div>
-    `;
+      <h3 data-testid="bookItemTitle">${book.title}</h3>
+      <p data-testid="bookItemAuthor">Penulis: ${book.author}</p>
+      <p data-testid="bookItemYear">Tahun: ${book.year}</p>
+      <div>
+        <button data-testid="bookItemIsCompleteButton">
+          ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
+        </button>
+        <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+        <button data-testid="bookItemEditButton">Edit Buku</button>
+      </div>
+    `; // Tombol pindah rak
 
-    // Tombol pindah rak
     bookElement
       .querySelector('[data-testid="bookItemIsCompleteButton"]')
-      .addEventListener("click", () => toggleBookStatus(book.id));
+      .addEventListener("click", () => toggleBookStatus(book.id)); // Tombol hapus
 
-    // Tombol hapus
     bookElement
       .querySelector('[data-testid="bookItemDeleteButton"]')
-      .addEventListener("click", () => deleteBook(book.id));
+      .addEventListener("click", () => deleteBook(book.id)); // Tombol edit
 
-    // Tombol edit
     bookElement
       .querySelector('[data-testid="bookItemEditButton"]')
       .addEventListener("click", () => editBook(book.id));
@@ -168,9 +165,8 @@ function searchBooks(event) {
 
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(query)
-  );
+  ); // Render hasil pencarian
 
-  // Render hasil pencarian
   renderFilteredBooks(filteredBooks);
 }
 
@@ -187,22 +183,22 @@ function renderFilteredBooks(filteredBooks) {
   filteredBooks.forEach((book) => {
     const bookElement = document.createElement("div");
     bookElement.classList.add("book-item");
-    bookElement.setAttribute("data-bookid", book.id);
+    bookElement.setAttribute("data-bookid", book.id); // PERBAIKAN: Tambahkan data-testid="bookItem"
+    bookElement.setAttribute("data-testid", "bookItem");
 
     bookElement.innerHTML = `
-      <h3 data-testid="bookItemTitle">${book.title}</h3>
-      <p data-testid="bookItemAuthor">Penulis: ${book.author}</p>
-      <p data-testid="bookItemYear">Tahun: ${book.year}</p>
-      <div>
-        <button data-testid="bookItemIsCompleteButton">
-          ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
-        </button>
-        <button data-testid="bookItemDeleteButton">Hapus Buku</button>
-        <button data-testid="bookItemEditButton">Edit Buku</button>
-      </div>
-    `;
+      <h3 data-testid="bookItemTitle">${book.title}</h3>
+      <p data-testid="bookItemAuthor">Penulis: ${book.author}</p>
+      <p data-testid="bookItemYear">Tahun: ${book.year}</p>
+      <div>
+        <button data-testid="bookItemIsCompleteButton">
+          ${book.isComplete ? "Belum selesai dibaca" : "Selesai dibaca"}
+        </button>
+        <button data-testid="bookItemDeleteButton">Hapus Buku</button>
+        <button data-testid="bookItemEditButton">Edit Buku</button>
+      </div>
+    `; // Event listener tombol (supaya tetap berfungsi)
 
-    // Event listener tombol (supaya tetap berfungsi)
     bookElement
       .querySelector('[data-testid="bookItemIsCompleteButton"]')
       .addEventListener("click", () => toggleBookStatus(book.id));
